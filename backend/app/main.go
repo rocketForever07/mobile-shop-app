@@ -2,6 +2,7 @@ package main
 
 import(
 	db "app/database"
+	"app/routes"
 )
 
 func main(){
@@ -15,6 +16,7 @@ func main(){
 	}
 
 	db.InitDB(config)
+	routes.Init()
 
 	
 
