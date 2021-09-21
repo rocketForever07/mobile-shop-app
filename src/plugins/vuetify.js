@@ -10,8 +10,8 @@ Vue.use(Vuetify);
 const opts = {theme: {
     themes: {
       light: {
-        primary: '#2D3753',
-        secondary: '#2D3753',
+        primary: '#614e2a',
+        secondary: '#614e2a',
         accent: '#3AE3D6',
         error: '#f44336',
         info: '#2d3753',

@@ -6,12 +6,11 @@
       color="primary"
       dark
     >
-<!--      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />-->
 
       <v-toolbar-title
         style="width: 350px"
       >
-        <a href="/" class="white--text" style="text-decoration: none"><v-icon>mdi-truck</v-icon>&nbsp;ShipIT</a>
+        <a href="/" class="white--text" style="text-decoration: none"><v-icon>mdi-cellphone</v-icon>&nbsp;MobileShop</a>
       </v-toolbar-title>
       <v-text-field
         flat
@@ -70,7 +69,7 @@
             <v-list-item
               v-for="(item, index) in items"
               :key="index"
-              @click=""
+              
               href="/shop"
             >
               <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -78,12 +77,6 @@
 
           </v-card>
         </v-menu>
-        <a href="/product" class="v-btn">
-          <span>Product</span>
-        </a>
-        <v-btn href="/blog">
-          <span>Blog</span>
-        </v-btn>
       </v-bottom-navigation>
     </v-content>
       <router-view/>
@@ -109,29 +102,18 @@
           >
             <v-icon size="24px">mdi-email</v-icon>
           </v-btn>
-          <v-btn
-            class="mx-4 white--text"
-            icon
-          >
-            <v-icon size="24px">mdi-calendar</v-icon>
-          </v-btn>
-           <v-btn
-            class="mx-4 white--text"
-            icon
-          >
-            <v-icon size="24px">mdi-delete</v-icon>
-          </v-btn>
+          
 
         </v-card-text>
 
         <v-card-text class="white--text pt-0">
-          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+          Nguyen Anh Duc - Doan Trong Khoi
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>ShipIT</strong>
+          {{ new Date().getFullYear() }} — <strong>MobileShop</strong>
         </v-card-text>
       </v-card>
     </v-footer>
@@ -142,11 +124,9 @@
         data () {
             return {
                 items: [
-                    { title: 'T-Shirts' },
-                    { title: 'Jackets' },
-                    { title: 'Shirts' },
-                    { title: 'Jeans' },
-                    { title: 'Shoes' },
+                    { title: 'IPHONE' },
+                    { title: 'SAMSUNG' },
+                    { title: 'OPPO' },
                 ],
                 activeBtn: 1,
             }
