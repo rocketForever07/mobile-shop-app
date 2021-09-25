@@ -77,7 +77,7 @@
             <div
               class="col-md-3 col-sm-6 col-xs-12"
               :key="pro.id"
-              v-for="pro in products"
+              v-for="pro in paginate"
             >
               <v-hover v-slot:default="{ hover }">
                 <v-card class="mx-auto" color="grey lighten-4" max-width="600">
@@ -85,9 +85,8 @@
                     class="white--text align-end"
                     :aspect-ratio="16 / 9"
                     height="200px"
-                    :src="pro.src"
+                    :src="pro.Img"
                   >
-                    <v-card-title>{{ pro.type }} </v-card-title>
                     <v-expand-transition>
                       <div
                         v-if="hover"
@@ -111,17 +110,23 @@
                   <v-card-text class="text--primary">
                     <div>
                       <a href="/product" style="text-decoration: none">{{
-                        pro.name
+                        pro.Name
                       }}</a>
                     </div>
-                    <div>${{ pro.price }}</div>
+                    <div>${{ pro.Price }}</div>
                   </v-card-text>
                 </v-card>
               </v-hover>
             </div>
           </div>
           <div class="text-center mt-12">
-            <v-pagination v-model="page" :length="6"></v-pagination>
+            <v-pagination
+              :length="totalPages"
+              circle
+              @input="setPage"
+              v-model="currentPage"
+            >
+            </v-pagination>
           </div>
         </div>
       </div>
@@ -139,10 +144,11 @@
 }
 </style>
 <script>
+import axios from "axios";
 export default {
   data: () => ({
     range: [0, 10000],
-    page: 1,
+    // page: 2,
     breadcrums: [
       {
         text: "Home",
@@ -195,92 +201,48 @@ export default {
         ],
       },
     ],
-    products: [
-      {
-        id: 1,
-        name: "BLACK TEE",
-        type: "Jackets",
-        price: "18.00",
-        src: require("../assets/img/shop/1.jpg"),
-      },
-      {
-        id: 2,
-        name: "WHITE TEE",
-        type: "Polo",
-        price: "40.00",
-        src: require("../assets/img/shop/2.jpg"),
-      },
-      {
-        id: 3,
-        name: "Zara limited...",
-        type: "Denim",
-        price: "25.00",
-        src: require("../assets/img/shop/3.jpg"),
-      },
-      {
-        id: 4,
-        name: "SKULL TEE",
-        type: "Jackets",
-        price: "30.00",
-        src: require("../assets/img/shop/4.jpg"),
-      },
-      {
-        id: 5,
-        name: "MANGO WINTER",
-        type: "Sweaters",
-        price: "50.00",
-        src: require("../assets/img/shop/5.jpg"),
-      },
-      {
-        id: 6,
-        name: "SHIRT",
-        type: "Denim",
-        price: "34.00",
-        src: require("../assets/img/shop/6.jpg"),
-      },
-      {
-        id: 7,
-        name: "TRUCKER JACKET",
-        type: "Jackets",
-        price: "38.00",
-        src: require("../assets/img/shop/7.jpg"),
-      },
-      {
-        id: 8,
-        name: "COATS",
-        type: "Jackets",
-        price: "25.00",
-        src: require("../assets/img/shop/8.jpg"),
-      },
-      {
-        id: 9,
-        name: "MANGO WINTER",
-        type: "Sweaters",
-        price: "50.00",
-        src: require("../assets/img/shop/9.jpg"),
-      },
-      {
-        id: 10,
-        name: "SHIRT",
-        type: "Denim",
-        price: "34.00",
-        src: require("../assets/img/shop/10.jpg"),
-      },
-      {
-        id: 11,
-        name: "TRUCKER JACKET",
-        type: "Jackets",
-        price: "38.00",
-        src: require("../assets/img/shop/11.jpg"),
-      },
-      {
-        id: 12,
-        name: "COATS",
-        type: "Jackets",
-        price: "25.00",
-        src: require("../assets/img/shop/12.jpg"),
-      },
-    ],
+    products: [],
+
+    currentPage: 1,
+    itemsPerPage: 12,
+    resultCount: 0,
   }),
+  created() {
+    axios
+      .get("http://localhost:9999/api/product")
+      .then((res) => {
+        console.log(res.data);
+        this.products = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  methods: {
+    setPage: function (pageNumber) {
+      this.currentPage = pageNumber;
+    },
+  },
+  computed: {
+    totalPages: function () {
+      this.resultCount = this.products.length;
+      if (this.resultCount == 0) {
+        return 1;
+      } else {
+        return Math.ceil(this.resultCount / this.itemsPerPage);
+      }
+    },
+    paginate: function () {
+      if (!this.products || this.products.length != this.products.length) {
+        return;
+      }
+      this.resultCount = this.products.length;
+      if (this.currentPage >= this.totalPages) {
+        this.currentPage = this.totalPages;
+      }
+      var index = this.currentPage * this.itemsPerPage - this.itemsPerPage;
+      return this.products.slice(index, index + this.itemsPerPage);
+    },
+  },
 };
 </script>

@@ -24,15 +24,15 @@
                   @click=""
                 >
                   <v-list-item-avatar>
-                    <v-img :src="require('../assets/img/shop/1.jpg')"></v-img>
+                    <v-img :src="require('../assets/img2/ss21.jpeg')"></v-img>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
                     <v-list-item-title >Item 1</v-list-item-title>
-                    <v-list-item-subtitle>Lorem Ipsum</v-list-item-subtitle>
+                    <v-list-item-subtitle>SamSungS21</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item></td>
-                <td>$40.00</td>
+                <td>$999.00</td>
                 <td>
                   <v-text-field
                     class="pt-10"
@@ -44,7 +44,7 @@
                     type="number"
                   ></v-text-field>
                 </td>
-                <td>$80.00</td>
+                <td>$1998.00</td>
                 <td><a>X</a></td>
               </tr>
               <tr>
@@ -54,15 +54,15 @@
                   @click=""
                 >
                   <v-list-item-avatar>
-                    <v-img :src="require('../assets/img/shop/2.jpg')"></v-img>
+                    <v-img :src="require('../assets/img2/1.jpeg')"></v-img>
                   </v-list-item-avatar>
 
                   <v-list-item-content>
                     <v-list-item-title >Item 2</v-list-item-title>
-                    <v-list-item-subtitle>Lorem Ipsum</v-list-item-subtitle>
+                    <v-list-item-subtitle>Iphone 13</v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item></td>
-                <td>$40.00</td>
+                <td>$999.00</td>
                 <td>
                   <v-text-field
                     class="pt-10"
@@ -74,7 +74,7 @@
                     type="number"
                   ></v-text-field>
                 </td>
-                <td>$80.00</td>
+                <td>$1998.00</td>
                 <td><a>X</a></td>
               </tr>
               </tbody>
@@ -90,7 +90,7 @@
               <tbody>
               <tr>
                 <td>Order Subtotal</td>
-                <td class="text-right" style="width: 50px;">$160.00</td>
+                <td class="text-right" style="width: 50px;">$3996.00</td>
               </tr>
               <tr>
                 <td>Shipping Charges</td>
@@ -102,7 +102,7 @@
               </tr>
               <tr>
                 <td>Total</td>
-                <td class="text-right" style="width: 50px;"><b>$175.00</b></td>
+                <td class="text-right" style="width: 50px;"><b>$4011.00</b></td>
               </tr>
               </tbody>
             </template>
@@ -144,7 +144,7 @@
                 <v-icon class="display-2">mdi-headset</v-icon>
               </v-col>
               <v-col  class="col-12 col-sm-9 pr-4">
-                <h3 class="font-weight-light">020-800-456-747</h3>
+                <h3 class="font-weight-light">029-999-999-999</h3>
                 <p class="font-weight-thin">24/7 Available Support</p>
               </v-col>
             </v-row>

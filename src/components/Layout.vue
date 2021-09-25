@@ -54,29 +54,10 @@
         <a href="/" class="v-btn">
           <span>Home</span>
         </a>
-        <v-menu open-on-hover offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn v-on="on">
-              <span>Shop</span>
-            </v-btn>
-          </template>
-          <v-card
-            class="mx-auto"
-            max-width="344"
-            outlined
-          >
-
-            <v-list-item
-              v-for="(item, index) in items"
-              :key="index"
-              
-              href="/shop"
-            >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-
-          </v-card>
-        </v-menu>
+        
+        <a href="/shop" class="v-btn">
+          <span>Shop</span>
+        </a>
       </v-bottom-navigation>
     </v-content>
       <router-view/>
