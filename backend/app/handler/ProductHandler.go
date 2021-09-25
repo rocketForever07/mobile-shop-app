@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"app/models/entity"
+	res "app/models/response"
+
 )
 
 
@@ -19,7 +21,10 @@ type ProductHandler struct{
 
 func (ph ProductHandler) GetAll(w http.ResponseWriter, r *http.Request){
 
-	products,err := ph.Repo.GetList()
+	var products []entity.Product
+	var err error
+
+	products,err = ph.Repo.GetList()
 
 	if err != nil{
 		w.WriteHeader(http.StatusNoContent)
@@ -27,8 +32,14 @@ func (ph ProductHandler) GetAll(w http.ResponseWriter, r *http.Request){
 	}else{ 
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-	
-		json.NewEncoder(w).Encode(products)
+
+		//mapper entity to response
+		var productsRes []res.ProductRes
+		for _,v := range products{
+			productsRes=append(productsRes, res.ProductMapper(v))
+		}
+
+		json.NewEncoder(w).Encode(productsRes)
 	}
 
 }
@@ -38,17 +49,26 @@ func (ph ProductHandler) GetDetail(w http.ResponseWriter, r *http.Request){
 	vars := mux.Vars(r)
 	code:= vars["code"]
 
-	product,err := ph.Repo.GetByCode(code)
+	var products []entity.Product
+	var err error
+
+	products,err = ph.Repo.GetByCode(code)
 	
-	fmt.Println(product)
+	fmt.Println(products)
 	if err != nil{
 		w.WriteHeader(http.StatusNoContent)
 		log.Println(err)
 	}
 
-	w.WriteHeader(http.StatusOK)
+	//mapper entity to response
+	var productsRes []res.ProductRes
+	for i:=0;i<len(products);i++{
+		productsRes=append(productsRes, res.ProductMapper(products[i]))
+	}
+
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(product)
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(productsRes)
 
 }
 
@@ -89,7 +109,7 @@ func (ph ProductHandler) Update(w http.ResponseWriter, r *http.Request){
 	product.ID = id
 	log.Println(product)
 
-	updateProduct,err := ph.Repo.Update(product,id)
+	updateProduct,err := ph.Repo.Update(product)
 	if err != nil{
 		log.Println(err)
 		w.WriteHeader(http.StatusNotFound)

@@ -3,6 +3,7 @@ package main
 import(
 	db "app/database"
 	"app/routes"
+	"app/helper/scheduler"
 )
 
 func main(){
@@ -17,7 +18,6 @@ func main(){
 
 	db.InitDB(config)
 	routes.Init()
-
+	scheduler.start(db.DB)
 	
-
 }

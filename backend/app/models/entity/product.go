@@ -11,6 +11,7 @@ type Product struct{
 	Price 		float64
 	Quantity 	int
 	Description string
+	Image		string
 	Color		string
 	Memory		string
 	Active 		int
@@ -74,7 +75,7 @@ func (ps ProductStorage) Insert(product Product) (Product,error){
 	return product,nil
 }
 
-func (ps ProductStorage) Update(product Product,id int) (Product,error){
+func (ps ProductStorage) Update(product Product) (Product,error){
 	result := ps.Storage.Save(&product)
 
 	if result.Error!=nil{

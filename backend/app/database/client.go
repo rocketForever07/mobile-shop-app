@@ -12,7 +12,6 @@ var DB *gorm.DB
 var err error
 func InitDB(config Config){
 
-	// dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true&multiStatements=true", "root", "dtkhoi07", "localhost:3306", "mobile_shop_app")
 	dsn := GetConnectionString(config)
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {

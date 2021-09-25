@@ -4,7 +4,6 @@ import "time"
 
 type Cart struct{
 	ID int `gorm:"primaryKey;autoIncrement:true"`
-	UserId int
 	CreatedAt time.Time
 	Status int
 	TotalPrice float64
